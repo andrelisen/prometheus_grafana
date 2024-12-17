@@ -16,12 +16,29 @@ const gauge = new prom.Gauge({
     help: 'Exemplo de Gauge'
 });
 
+const histogram = new prom.Histogram({
+    name: 'aula_request_time_seconds',
+    help: 'Tempo de resposta da API',
+    buckets: [0.1, 0.2, 0.3, 0.4, 0.5] 
+});
+
+const summary = new prom.Summary({
+    name: 'aula_summary_request_time_seconds',
+    help: 'Tempo de resposta da API',
+    buckets: [0.5, 0.9, 0.99] //50%, 90%, 99%
+});
+
 app.get('/', function (req, res) {
     //contando a quantidade de requests
     counter.labels('200').inc();
 
     //cria uma metrica do tipo gauge com um valor aleatorio
     gauge.set(100*Math.random());
+
+    const tempo = Math.random();
+    //cria uma metrica do tipo histogram e summarycom um valor aleatorio
+    histogram.observe(tempo);
+    summary.observe(tempo);
     
     res.send('Instrumentando uma app com o Prometheus!');
 });
