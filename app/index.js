@@ -31,6 +31,7 @@ const summary = new prom.Summary({
 app.get('/', function (req, res) {
     //contando a quantidade de requests
     counter.labels('200').inc();
+    counter.labels('300').inc();
 
     //cria uma metrica do tipo gauge com um valor aleatorio
     gauge.set(100*Math.random());
