@@ -51,4 +51,4 @@ app.get('/metrics', async function (req, res) {
 });
 
 //Porta sendo externalizada
-app.listen(3000);
+app.listen(3030);

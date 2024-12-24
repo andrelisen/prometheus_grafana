@@ -12,8 +12,8 @@ scrape_configs:
 - job_name: aula
   static_configs:
   - targets:
-    - 192.168.1.107:3000 
-    - 192.168.1.103:3000  #mac
+    - 192.168.1.107:3030 
+    - 192.168.1.103:3030  #mac
 - job_name: servidor
   static_configs:
   - targets:
